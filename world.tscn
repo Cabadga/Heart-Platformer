@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://1djjxewcstdl"]
+[gd_scene load_steps=4 format=3 uid="uid://1djjxewcstdl"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_kkjcw"]
 [ext_resource type="PackedScene" uid="uid://ckosqlxitcw5g" path="res://player.tscn" id="2_mgkxf"]
+[ext_resource type="Resource" uid="uid://c82dcm2dktkrb" path="res://SlowMovementData.tres" id="3_5d4t0"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_kkjcw")
@@ -15,3 +16,4 @@ polygon = PackedVector2Array(0, 0, 16, 0, 16, 104, 48, 104, 80, 120, 104, 120, 1
 
 [node name="Player" parent="." instance=ExtResource("2_mgkxf")]
 position = Vector2(40, 72)
+movement_data = ExtResource("3_5d4t0")
