@@ -11,6 +11,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 func _physics_process(delta):
 	apply_gravity(delta)
 	handle_jump()
+	handle_wall_jump()
 	var input_axis = Input.get_axis("ui_left", "ui_right")
 	handle_acceleration(input_axis, delta)
 	handle_air_acceleration(input_axis, delta)
@@ -26,6 +27,17 @@ func _physics_process(delta):
 func apply_gravity(delta):
 	if not is_on_floor():
 		velocity.y += gravity * movement_data.gravity_scale * delta
+
+func handle_wall_jump():
+	if not is_on_wall(): return
+	var wall_normal = get_wall_normal()
+	if Input.is_action_just_pressed("ui_left") and wall_normal == Vector2.LEFT:
+		velocity.x = wall_normal.x * movement_data.speed
+		velocity.y = movement_data.jump_velocity
+	if Input.is_action_just_pressed("ui_right") and wall_normal == Vector2.RIGHT:
+		velocity.x = wall_normal.x * movement_data.speed
+		velocity.y = movement_data.jump_velocity
+		
 
 func handle_jump():
 	if is_on_floor(): air_jump = true
